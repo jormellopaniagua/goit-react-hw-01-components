@@ -1,40 +1,41 @@
 import PropTypes from 'prop-types';
-import './Profile.css'; //  importar el archivo de estilos CSS para el componente Profile
-
+import Perfil from './styledComponents/profile';
+import Description from './styledComponents/description';
+import Avatar from './styledComponents/avatar';
 import { Component } from 'react';
+import UserName from './styledComponents/name';
+import Stats from './styledComponents/stats';
+import Stat from './styledComponents/stat';
+import StatLabel from './styledComponents/statLabel';
+import Listado from './styledComponents/listado';
 
 export default class Profile extends Component {
-  /* constructor(props) {
-    super(props);
-
-    this.state = {};
-  }*/
-
   render() {
     return (
-      <div class="profile">
-        <div class="description">
-          <img src={this.props.avatar} alt="User avatar" class="avatar" />
-          <p class="name">{this.props.username}</p>
+      <Perfil class="profile">
+        <Description class="description">
+          <Avatar src={this.props.avatar} alt="User avatar" class="avatar" />
+          <UserName class="name">{this.props.username}</UserName>
           <p class="tag">@{this.props.tag}</p>
           <p class="location">{this.props.location}</p>
-        </div>
-
-        <ul class="stats">
-          <li>
-            <span class="label">Followers</span>
-            <span class="quantity">{this.props.stats.followers}</span>
-          </li>
-          <li>
-            <span class="label">Views</span>
-            <span class="quantity">{this.props.stats.views}</span>
-          </li>
-          <li>
-            <span class="label">Likes</span>
-            <span class="quantity">{this.props.stats.likes}</span>
-          </li>
-        </ul>
-      </div>
+        </Description>
+        <Listado>
+          <Stats class="stats">
+            <Stat>
+              <StatLabel class="label">Followers</StatLabel>
+              <span class="quantity">{this.props.stats.followers}</span>
+            </Stat>
+            <Stat>
+              <StatLabel class="label">Views</StatLabel>
+              <span class="quantity">{this.props.stats.views}</span>
+            </Stat>
+            <Stat>
+              <StatLabel class="label">Likes</StatLabel>
+              <span class="quantity">{this.props.stats.likes}</span>
+            </Stat>
+          </Stats>
+        </Listado>
+      </Perfil>
     );
   }
 }

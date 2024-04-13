@@ -1,20 +1,27 @@
 import PropTypes from 'prop-types';
-import './FriendList.css'; //importar el archivo de estilos CSS para el componente Profile
+//import './FriendList.css'; //importar el archivo de estilos CSS para el componente Profile
 
 import { Component } from 'react';
+import Friends from './styledComponents/friends';
+import FriendGroup from './styledComponents/friendList';
+import FriendCard from './styledComponents/friendCard';
+import OnlineStatus from './styledComponents/onlineStatus';
+import OfflineStatus from './styledComponents/offlineStatus';
 
 export default class FriendList extends Component {
   render() {
     const { friends } = this.props;
     return (
-      <div>
-        <h1>FRIENDS</h1>
-        <ul className="friend-list">
+      <Friends>
+        <FriendGroup className="friend-list">
           {friends.map(({ id, avatar, name, isOnline }) => (
-            <li key={id} className="item">
-              <span class="status">
-                {isOnline ? 'status online' : 'status offline'}
-              </span>
+            <FriendCard key={id} className="item">
+              {/* Renderiza el estado con el color correspondiente */}
+              {isOnline ? (
+                <OnlineStatus className="status">.</OnlineStatus>
+              ) : (
+                <OfflineStatus className="status">.</OfflineStatus>
+              )}
               <img
                 className="avatar"
                 src={avatar}
@@ -22,10 +29,10 @@ export default class FriendList extends Component {
                 width="48"
               />
               <p className="name">{name}</p>
-            </li>
+            </FriendCard>
           ))}
-        </ul>
-      </div>
+        </FriendGroup>
+      </Friends>
     );
   }
 }

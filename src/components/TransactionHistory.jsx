@@ -1,31 +1,33 @@
 import PropTypes from 'prop-types';
-import './TransactionHistory.css'; // importar el archivo de estilos CSS para el componente Profile
 
 import { Component } from 'react';
+import TransactionTable from './styledComponents/table';
+import TableHead from './styledComponents/tableHead';
+import TableRow from './styledComponents/tableRow';
 
 export default class TransactionHistory extends Component {
   render() {
     const { items } = this.props;
     return (
-      <table class="transaction-history">
-        <thead>
+      <TransactionTable class="transaction-history">
+        <TableHead>
           <tr>
             <th>Type</th>
             <th>Amount</th>
             <th>Currency</th>
           </tr>
-        </thead>
+        </TableHead>
 
         <tbody>
           {items.map(({ id, type, amount, currency }) => (
-            <tr key={id}>
+            <TableRow key={id}>
               <td>{type}</td>
               <td>{amount}</td>
               <td>{currency}</td>
-            </tr>
+            </TableRow>
           ))}
         </tbody>
-      </table>
+      </TransactionTable>
     );
   }
 }
